@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-into" author="masmetus">
+
+        <insert tableName="user">
+            <column name="email" value="admin@admin.com"/>
+            <column name="first_name" value="Александр"/>
+            <column name="last_name" value="Александров"/>
+            <column name="password" value="$2a$10$kuruFgKtV/Z6OUfVgkjTmerepH9w0xbj0fDp91wS.fnLRGqSVxnZ2"/>
+            <column name="username" value="admin"/>
+            <column name="id" value="1"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="name" value="Teacher"/>
+            <column name="id" value="1"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="name" value="Engineer"/>
+            <column name="id" value="2"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="name" value="HeadOdLab"/>
+            <column name="id" value="3"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="name" value="HeadOfDep"/>
+            <column name="id" value="4"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="name" value="NotСonfirmed"/>
+            <column name="id" value="5"/>
+        </insert>
+
+        <insert tableName="user_role">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

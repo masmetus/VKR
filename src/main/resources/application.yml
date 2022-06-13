@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/vkr
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: Masmetus2018
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
