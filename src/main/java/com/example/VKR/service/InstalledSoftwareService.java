@@ -54,10 +54,10 @@ public class InstalledSoftwareService {
     }
 
     @Transactional
-    public boolean editInstallSoft(Long softId){
+    public boolean editInstallSoft(Long softId, Date licStart, Date licEnd){
         InstalledSoftware installedSoftware = installedSoftwareRepository.findById(softId).orElseThrow(NotFoundException::new);
-        installedSoftware.setLicenseStart(installedSoftware.getLicenseStart());
-        installedSoftware.setLicenseEnd(installedSoftware.getLicenseEnd());
+        installedSoftware.setLicenseStart(licStart);
+        installedSoftware.setLicenseEnd(licEnd);
         try {
             installedSoftwareRepository.save(installedSoftware);
         }catch (Exception e){

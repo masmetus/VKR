@@ -44,17 +44,24 @@ public class ComputerController {
             return ResponseEntity.badRequest().body(new MessageResponse("Error!"));
     }
 
-    //Продумать
-    //По логике, они должны не удаляться, а у них убирается рабочее место, а сами они, я хз, имеют статус "Списан"
-    /*
-    @PutMapping("/delComputer")
+    @PutMapping("/notUseComputer")
     @ApiOperation("Списать компьютер")
-    public ResponseEntity<MessageResponse> delComputer(@Valid @RequestBody DeleteRequest deleteRequest){
-        if(computerService.deleteComputer(deleteRequest.getId()))
-            return ResponseEntity.ok(new MessageResponse("Сomputer has been sent to the warehouse!"));
+    public ResponseEntity<MessageResponse> offComputer(@Valid @RequestBody Computer computer){
+        if(computerService.offComputer(computer.getId()))
+            return ResponseEntity.ok(new MessageResponse("Computer has been sent to the warehouse!"));
         else
             return ResponseEntity.badRequest().body(new MessageResponse("Error!"));
-    }*/
+    }
+
+
+    @DeleteMapping("/delComputer")
+    @ApiOperation("Удалить компьютер со склада")
+    public ResponseEntity<MessageResponse> delComputer(@Valid @RequestBody Computer computer){
+        if(computerService.deleteComputer(computer.getId()))
+            return ResponseEntity.ok(new MessageResponse("Computer has been sent to the warehouse!"));
+        else
+            return ResponseEntity.badRequest().body(new MessageResponse("Error!"));
+    }
 
     @GetMapping("/allComputers")
     @ApiOperation("Список компьютеров")

@@ -2,6 +2,7 @@ package com.example.VKR.service;
 
 import com.example.VKR.model.Computer;
 import com.example.VKR.repository.ComputerRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,17 +40,30 @@ public class ComputerService {
     }
 
     @Transactional
-    public boolean deleteComputer(Long id) {
+    public boolean offComputer(Long id) {
         Computer computer = computerRepository.getById(id);
+        computer.setUsed(false);
         try {
-            computerRepository.delete(computer);
+            computerRepository.save(computer);
         } catch (Exception e) {
             return false;
         }
         return true;
     }
 
-    public List<Computer> getAllComputers(){
+    @Transactional
+    public boolean deleteComputer(Long id) {
+        Computer computer = computerRepository.getById(id);
+        if (computer.isUsed() == true) {
+            throw new IllegalArgumentException();
+        } else
+            computerRepository.delete(computer);
+
+        return true;
+
+    }
+
+    public List<Computer> getAllComputers() {
         return computerRepository.findAll();
     }
 }
